@@ -1,0 +1,32 @@
+# Node modules (both root and frontend)
+node_modules/
+frontend/node_modules/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.* 
+
+# Build output
+# frontend/build/
+# backend/dist/
+# dist/
+
+# IDE/editor stuff
+.vscode/
+.idea/
+
+# Coverage reports
+coverage/
+frontend/coverage/
+backend/coverage/
