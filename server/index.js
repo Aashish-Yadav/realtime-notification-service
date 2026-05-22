@@ -15,10 +15,20 @@ const app = express();
 connectDB();
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000',
-    'https://realtime-notification-service.vercel.app', // your vercel URL
-    /\.vercel\.app$/,  // covers all vercel preview deployments
-  ],
+  origin: function(origin, callback) {
+    if (
+      !origin ||
+      origin === 'http://localhost:5173' ||
+      origin === 'http://localhost:3000' ||
+      origin === 'https://realtime-notification-service.vercel.app' ||
+      origin.endsWith('.vercel.app')
+    ) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
 
 app.use(express.json());
@@ -39,8 +49,12 @@ app.get('/test/health', (req, res) => {
     res.send("server working fine");
 });
 
+app.get('/cors-test', (req, res) => {
+  res.json({ success: true });
+});
+
 // PORT
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 
 // Server Start
 app.listen(PORT, () => {
