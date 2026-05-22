@@ -15,7 +15,10 @@ const app = express();
 connectDB();
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000'],
+  origin: ['http://localhost:5173', 'http://localhost:3000',
+    'https://realtime-notification-service.vercel.app', // your vercel URL
+    /\.vercel\.app$/,  // covers all vercel preview deployments
+  ],
 }));
 
 app.use(express.json());
