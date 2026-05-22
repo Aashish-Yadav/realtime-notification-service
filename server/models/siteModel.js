@@ -1,11 +1,16 @@
 const mongoose = require('mongoose');
 
 const siteSchema = new mongoose.Schema({
-    onwer:{
+    owner:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'userModel',
         required:true,
     },
+    name: {
+  type: String,
+  default: '',
+  trim: true,
+},
     domain:{
         type:String,
         required:true,

@@ -6,6 +6,7 @@ const authRoutes = require('./routes/authRoutes')
 const notifyRoutes = require('./routes/notifyRoutes')
 const subscribeRoutes = require('./routes/subscribeRoutes')
 const siteRoutes = require('./routes/siteRoutes')
+const path = require('path')
 
 
 
@@ -13,13 +14,22 @@ const app = express();
 
 connectDB();
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:3000'],
+}));
+
 app.use(express.json());
+
+// Serve SDK static files
+app.use('/sdk', express.static(path.join(__dirname, '../client/public/sdk')));
+
 
 app.use('/api/auth', authRoutes);
 app.use('/api/subscribe', subscribeRoutes);
 app.use('/api/sites',   siteRoutes);
 app.use('/api/notify',  notifyRoutes)  ;
+
+
 
 // Routes
 app.get('/test/health', (req, res) => {
