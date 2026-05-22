@@ -8,13 +8,13 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        // target: 'http://localhost:5000',
-        target: 'https://realtime-notification-service.onrender.com',
+        target: 'http://localhost:5000',
+        // target: 'https://realtime-notification-service.onrender.com',
         changeOrigin: true,
       },
       '/sdk': {
-        // target: 'http://localhost:5000',
-        target: 'https://realtime-notification-service.onrender.com',
+        target: 'http://localhost:5000',
+        // target: 'https://realtime-notification-service.onrender.com',
         changeOrigin: true,
       }
     }
